@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="es">
+<!-- Desarrollado por: Avila González Luis Arturo -->
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>MI CV</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="pdf-style.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+<body>
+    <!-- Proyecto UAMEX - Hernández Guadarrama Hellen Aylén -->
+    <div class="app-container">
+        <aside class="sidebar">
+            <header class="sidebar-header">
+                <a href="index.html" class="logo-link" title="Volver al inicio">
+                    <div class="logo-image">
+                        <span>UAMEX</span>
+                    </div>
+                </a>
+                <div>
+                    <i class='bx bxs-file-blank'></i>
+                    <h1>Curriculum de la UAMEX</h1>
+                </div>
+            </header>
+
+            <nav class="controls">
+                <h2>Añadir Bloques</h2>
+                <button class="add-block-btn" data-block-type="personal"><i class='bx bx-user-circle'></i> Datos Personales</button>
+                <button class="add-block-btn" data-block-type="summary"><i class='bx bx-notepad'></i> Resumen Profesional</button>
+                <button class="add-block-btn" data-block-type="education"><i class='bx bxs-graduation'></i> Educación</button>
+                <button class="add-block-btn" data-block-type="languages"><i class='bx bx-conversation'></i> Idiomas</button>
+                <button class="add-block-btn" data-block-type="diplomas"><i class='bx bxs-award'></i> Diplomados</button>
+                <button class="add-block-btn" data-block-type="experience"><i class='bx bx-briefcase-alt-2'></i> Experiencia</button>
+                <button class="add-block-btn" data-block-type="courses"><i class='bx bx-book-bookmark'></i> Cursos</button>
+                <button class="add-block-btn" data-block-type="academic-production"><i class='bx bx-book'></i> Producción Académica</button>
+                <button class="add-block-btn" data-block-type="skills"><i class='bx bx-ruler'></i> Habilidades</button>
+                <button class="add-block-btn" data-block-type="hobbies"><i class='bx bx-joystick'></i> Pasatiempos</button>
+                <button class="add-block-btn" data-block-type="custom"><i class='bx bx-extension'></i> Personalizado</button>
+            </nav>
+            <div class="actions">
+                <hr>
+                <button id="export-pdf-btn"><i class='bx bxs-file-pdf'></i> Exportar PDF</button>
+                <button id="export-data-btn"><i class='bx bx-export'></i> Exportar para Compartir</button>
+                <button id="import-data-btn"><i class='bx bx-import'></i> Importar Datos</button>
+                <button id="clear-all-btn"><i class='bx bx-trash'></i> Vaciar Todo</button>
+                <input type="file" id="import-file-input" hidden accept=".json,.zip,.cvzip">
+            </div>
+        </aside>
+
+        <main class="cv-editor">
+            <div id="cv-container"></div>
+        </main>
+    </div>
+
+    <!-- ===================== PLANTILLAS ===================== -->
+    <!-- Desarrollado por: Ramírez García Maria Guadalupe -->
+    
+    <!-- Datos Personales -->
+    <template id="personal-template">
+        <section class="cv-block" data-block-type="personal">
+            <div class="block-controls"><i class='bx bx-grid-vertical handle'></i><i class='bx bx-trash delete-btn'></i></div>
+            <div class="personal-data-grid">
+                <div class="photo-area">
+                    <div class="photo-placeholder"><i class='bx bxs-user'></i></div>
+                    <img class="profile-photo" src="" alt="Foto de perfil">
+                    <div class="photo-buttons">
+                        <input type="file" class="photo-input" hidden accept="image/*">
+                        <button class="add-photo-btn">Añadir foto</button>
+                        <button class="remove-photo-btn hidden">Quitar foto</button>
+                    </div>
+                </div>
+                <div class="info-fields">
+                    <h1 class="data-name" contenteditable="true">Nombre Completo</h1>
+                    <p class="data-position" contenteditable="true">Grado de estudios</p>
+                    <div class="contact-info">
+                        <span class="data-email" contenteditable="true">correo@ejemplo.com</span> | 
+                        <span class="data-phone" contenteditable="true">Teléfono</span>
+                    </div>
+                    <div class="data-address" contenteditable="true">Dirección, Ciudad, País</div>
+                </div>
+            </div>
+        </section>
+    </template>
+
+    <!-- Resumen Profesional -->
+    <template id="summary-template">
+        <section class="cv-block" data-block-type="summary">
+            <div class="block-controls"><i class='bx bx-grid-vertical handle'></i><i class='bx bx-trash delete-btn'></i></div>
+            <h2 class="block-title" contenteditable="true">Resumen Profesional</h2>
+            <div class="toolbar">
+                <button class="toolbar-btn" data-command="bold"><i class='bx bx-bold'></i></button>
+                <button class="toolbar-btn" data-command="italic"><i class='bx bx-italic'></i></button>
+                <button class="toolbar-btn" data-command="underline"><i class='bx bx-underline'></i></button>
+                <button class="toolbar-btn" data-command="strikeThrough"><i class='bx bx-strikethrough'></i></button>
+                <button class="toolbar-btn" data-command="insertUnorderedList"><i class='bx bx-list-ul'></i></button>
+                <button class="toolbar-btn" data-command="insertOrderedList"><i class='bx bx-list-ol'></i></button>
+            </div>
+            <div class="block-content editable-area" contenteditable="true"><p>Escribe aquí tu resumen.</p></div>
+        </section>
+    </template>
+
+    <!-- Educación (GRADO DE ESTUDIOS) -->
+    <template id="education-template">
+        <section class="cv-block" data-block-type="education">
+            <div class="block-controls"><i class='bx bx-grid-vertical handle'></i><i class='bx bx-trash delete-btn'></i></div>
+            <h2 class="block-title" contenteditable="true">GRADO DE ESTUDIOS</h2>
+            <div class="item-list"></div>
+            <button class="add-item-btn"><i class='bx bx-plus'></i> Añadir Nivel Educativo</button>
+        </section>
+    </template>
+
+    <!-- Idiomas -->
+    <template id="languages-template">
+        <section class="cv-block" data-block-type="languages">
+            <div class="block-controls"><i class='bx bx-grid-vertical handle'></i><i class='bx bx-trash delete-btn'></i></div>
+            <h2 class="block-title" contenteditable="true">IDIOMAS</h2>
+            <div class="item-list"></div>
+            <button class="add-item-btn"><i class='bx bx-plus'></i> Añadir Idioma</button>
+        </section>
+    </template>
+
+    <!-- Diplomados -->
+    <template id="diplomas-template">
+        <section class="cv-block" data-block-type="diplomas">
+            <div class="block-controls"><i class='bx bx-grid-vertical handle'></i><i class='bx bx-trash delete-btn'></i></div>
+            <h2 class="block-title" contenteditable="true">DIPLOMADOS</h2>
+            <div class="item-list"></div>
+            <button class="add-item-btn"><i class='bx bx-plus'></i> Añadir Diplomado</button>
+        </section>
+    </template>
+
+    <!-- Experiencia Profesional -->
+    <template id="experience-template">
+        <section class="cv-block" data-block-type="experience">
+            <div class="block-controls"><i class='bx bx-grid-vertical handle'></i><i class='bx bx-trash delete-btn'></i></div>
+            <h2 class="block-title" contenteditable="true">EXPERIENCIA LABORAL</h2>
+            <div class="item-list"></div>
+            <button class="add-item-btn"><i class='bx bx-plus'></i> Añadir Experiencia</button>
+        </section>
+    </template>
+
+    <!-- Cursos -->
+    <template id="courses-template">
+        <section class="cv-block" data-block-type="courses">
+            <div class="block-controls"><i class='bx bx-grid-vertical handle'></i><i class='bx bx-trash delete-btn'></i></div>
+            <h2 class="block-title" contenteditable="true">CURSOS DE ACTUALIZACION</h2>
+            <div class="item-list"></div>
+            <button class="add-item-btn"><i class='bx bx-plus'></i> Añadir Curso</button>
+        </section>
+    </template>
+
+    <!-- Producción Académica -->
+    <template id="academic-production-template">
+        <section class="cv-block" data-block-type="academic-production">
+            <div class="block-controls"><i class='bx bx-grid-vertical handle'></i><i class='bx bx-trash delete-btn'></i></div>
+            <h2 class="block-title" contenteditable="true">PRODUCCION ACADEMICA</h2>
+            <div class="item-list"></div>
+            <button class="add-item-btn"><i class='bx bx-plus'></i> Añadir Producción</button>
+        </section>
+    </template>
+
+    <!-- Habilidades - CORREGIDO -->
+    <template id="skills-template">
+        <section class="cv-block" data-block-type="skills">
+            <div class="block-controls"><i class='bx bx-grid-vertical handle'></i><i class='bx bx-trash delete-btn'></i></div>
+            <h2 class="block-title" contenteditable="true">Habilidades</h2>
+            <div class="item-list"></div>
+            <button class="add-item-btn"><i class='bx bx-plus'></i> Añadir Habilidad</button>
+        </section>
+    </template>
+
+    <!-- Pasatiempos -->
+    <template id="hobbies-template">
+        <section class="cv-block" data-block-type="hobbies">
+            <div class="block-controls"><i class='bx bx-grid-vertical handle'></i><i class='bx bx-trash delete-btn'></i></div>
+            <h2 class="block-title" contenteditable="true">Pasatiempos</h2>
+            <div class="block-content" contenteditable="true"><p>Ej: Senderismo, ajedrez...</p></div>
+        </section>
+    </template>
+
+    <!-- Personalizado -->
+    <template id="custom-template">
+        <section class="cv-block" data-block-type="custom">
+            <div class="block-controls"><i class='bx bx-grid-vertical handle'></i><i class='bx bx-trash delete-btn'></i></div>
+            <h2 class="block-title" contenteditable="true">Sección Personalizada</h2>
+            <div class="block-content" contenteditable="true"><p>Contenido personalizado...</p></div>
+        </section>
+    </template>
+
+    <!-- Librerías -->
+    <!-- Avila González Luis Arturo - Desarrollo Frontend -->
+    <script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.0/jszip.min.js"></script>
+
+    <!-- Script principal -->
+    <!-- Hernández Guadarrama Hellen Aylén - Lógica JavaScript -->
+    <script src="script.js"></script>
+</body>
+</html>
