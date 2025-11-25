@@ -25,7 +25,7 @@ document.addEventListener('DOMContentLoaded', () => {
     importAdditionalInput.type = 'file';
     importAdditionalInput.id = 'import-additional-input';
     importAdditionalInput.hidden = true;
-    importAdditionalInput.accept = '.json';
+    importAdditionalInput.accept = '.json,.zip';
     document.body.appendChild(importAdditionalInput);
 
     // === FUNCIÓN PARA VACIAR TODO ===
@@ -1391,7 +1391,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         itemList.insertAdjacentHTML('beforeend', createItemHTML(blockData.type, processedItemData));
                         
                         const newItem = itemList.lastElementChild;
-                        if (blockData.type === 'courses' || type === 'diplomas' || type === 'academic-production') {
+                        if (blockData.type === 'courses' || blockData.type === 'diplomas' || blockData.type === 'academic-production') {
                             if (processedItemData.fileData) {
                                 newItem.dataset.fileData = processedItemData.fileData;
                             }
@@ -1666,22 +1666,47 @@ document.addEventListener('DOMContentLoaded', () => {
         const file = event.target.files[0];
         if (!file) return;
 
-        if (file.name.endsWith('.json')) {
+        if (file.name.toLowerCase().endsWith('.json')) {
             const reader = new FileReader();
             reader.onload = async (e) => {
                 try {
                     const data = JSON.parse(e.target.result);
                     const result = await loadAdditionalData(data);
-                    alert(`Datos adicionales importados correctamente.\n\nSe añadieron: ${result.added} nuevos bloques\nSe fusionaron: ${result.merged} items en bloques existentes\n\nLos datos se han organizado automáticamente por categorías.`);
+                    alert(`Datos adicionales importados correctamente.
+
+Bloques nuevos: ${result.added}
+Items fusionados: ${result.merged}`);
                 } catch (err) {
                     alert('Error al importar JSON adicional: ' + err.message);
                 }
             };
             reader.readAsText(file);
+        } else if (file.name.toLowerCase().endsWith('.zip')) {
+            try {
+                const buffer = await file.arrayBuffer();
+                const zip = await JSZip.loadAsync(buffer);
+
+                const dataFile = zip.file("cv-data.json");
+                if (!dataFile) {
+                    alert("El ZIP no contiene cv-data.json");
+                    return;
+                }
+
+                const dataText = await dataFile.async("string");
+                const data = JSON.parse(dataText);
+                const result = await loadAdditionalData(data);
+
+                alert(`ZIP adicional importado correctamente.
+
+Bloques nuevos: ${result.added}
+Items fusionados: ${result.merged}`);
+            } catch (err) {
+                alert("Error al importar ZIP adicional: " + err.message);
+            }
         } else {
-            alert('Formato no soportado. Use .json');
+            alert("Formato no soportado. Usa .json o .zip");
         }
-        
+
         event.target.value = '';
     });
 
