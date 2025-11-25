@@ -1,0 +1,596 @@
+
+/* pdf-style.css - Estilos mejorados para PDF con índice */
+<!-- Desarrollado por: Avila González Luis Arturo -->
+
+/* ============================================= */
+/* ESTILOS GENERALES PARA PDF */
+/* ============================================= */
+
+.pdf-export-wrapper {
+    font-family: 'Times New Roman', serif !important;
+    font-size: 11pt !important;
+    line-height: 1.4 !important;
+    color: #1a1a1a !important;
+    background: #ffffff !important;
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+/* ============================================= */
+/* ENCABEZADO MEMBRETADO MEJORADO */
+/* ============================================= */
+
+.pdf-membrete {
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%) !important;
+    border-bottom: 3px solid #0A3B68 !important;
+}
+
+.pdf-membrete header {
+    padding: 0.3in 0.5in 0.2in !important;
+    border-bottom: 2px solid #0A3B68 !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 0.4in !important;
+    background: #ffffff !important;
+}
+
+.pdf-membrete .logo-container {
+    width: 1.2in !important;
+    height: 1.2in !important;
+    background: linear-gradient(135deg, #0A3B68 0%, #1e5a9c 100%) !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    border-radius: 8px !important;
+    border: 2px solid #0A3B68 !important;
+    box-shadow: 0 2px 8px rgba(10, 59, 104, 0.2) !important;
+}
+
+.pdf-membrete .logo-container strong {
+    color: white !important;
+    font-size: 14pt !important;
+    font-weight: bold !important;
+    text-align: center !important;
+}
+
+.pdf-membrete .header-content {
+    flex: 1 !important;
+    text-align: center !important;
+}
+
+.pdf-membrete .header-content h1 {
+    margin: 0 0 0.1in 0 !important;
+    font-family: 'Times New Roman', serif !important;
+    font-size: 24pt !important;
+    font-weight: bold !important;
+    color: #0A3B68 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 1px !important;
+}
+
+.pdf-membrete .header-content .subtitle {
+    font-size: 10pt !important;
+    color: #666 !important;
+    font-style: italic !important;
+}
+
+.pdf-membrete .header-date {
+    width: 1.8in !important;
+    text-align: right !important;
+    font-size: 10pt !important;
+    color: #0A3B68 !important;
+    font-weight: bold !important;
+}
+
+/* ============================================= */
+/* PÁGINA DE ÍNDICE MEJORADA */
+/* ============================================= */
+
+.pdf-index-page {
+    page-break-after: always !important;
+    padding: 0.5in !important;
+    background: #ffffff !important;
+}
+
+.pdf-index-page .index-header {
+    text-align: center !important;
+    margin-bottom: 0.4in !important;
+    padding-bottom: 0.2in !important;
+    border-bottom: 3px double #0A3B68 !important;
+}
+
+.pdf-index-page .index-header h1 {
+    font-size: 28pt !important;
+    font-weight: bold !important;
+    color: #0A3B68 !important;
+    margin: 0.2in 0 0.1in 0 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 2px !important;
+}
+
+.pdf-index-page .index-header .document-info {
+    font-size: 12pt !important;
+    color: #666 !important;
+    font-style: italic !important;
+}
+
+.pdf-index-page .index-content {
+    margin: 0.3in 0 !important;
+}
+
+.pdf-index-page .index-section {
+    margin-bottom: 0.2in !important;
+}
+
+.pdf-index-page .index-section h2 {
+    font-size: 14pt !important;
+    font-weight: bold !important;
+    color: #0A3B68 !important;
+    border-bottom: 1px solid #0A3B68 !important;
+    padding-bottom: 0.05in !important;
+    margin-bottom: 0.1in !important;
+    text-transform: uppercase !important;
+}
+
+.pdf-index-page .index-items {
+    list-style: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+.pdf-index-page .index-item {
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    padding: 0.08in 0 !important;
+    border-bottom: 1px dotted #999 !important;
+    font-size: 11pt !important;
+}
+
+.pdf-index-page .index-item:last-child {
+    border-bottom: none !important;
+}
+
+.pdf-index-page .item-title {
+    font-weight: bold !important;
+    color: #333 !important;
+    flex: 1 !important;
+}
+
+.pdf-index-page .item-page {
+    color: #0A3B68 !important;
+    font-weight: bold !important;
+    min-width: 0.4in !important;
+    text-align: right !important;
+}
+
+.pdf-index-page .index-footer {
+    margin-top: 0.4in !important;
+    padding-top: 0.2in !important;
+    border-top: 1px solid #ccc !important;
+    text-align: center !important;
+    font-size: 10pt !important;
+    color: #666 !important;
+    font-style: italic !important;
+}
+
+/* ============================================= */
+/* CONTENIDO PRINCIPAL DEL CV OPTIMIZADO */
+/* ============================================= */
+
+.pdf-optimized {
+    font-family: 'Times New Roman', serif !important;
+    font-size: 11pt !important;
+    line-height: 1.4 !important;
+    color: #1a1a1a !important;
+    padding: 0.5in !important;
+}
+
+.pdf-optimized .cv-block {
+    margin-bottom: 0.25in !important;
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+    padding: 0.15in 0 !important;
+}
+
+.pdf-optimized .block-title {
+    font-size: 14pt !important;
+    font-weight: bold !important;
+    text-transform: uppercase !important;
+    border-bottom: 2px solid #0A3B68 !important;
+    padding-bottom: 0.08in !important;
+    margin-bottom: 0.15in !important;
+    color: #0A3B68 !important;
+    letter-spacing: 0.5px !important;
+    page-break-after: avoid !important;
+}
+
+/* Ocultar controles de edición en PDF */
+.pdf-optimized .block-controls,
+.pdf-optimized .item-controls,
+.pdf-optimized .add-item-btn,
+.pdf-optimized .toolbar,
+.pdf-optimized .add-photo-btn,
+.pdf-optimized .remove-photo-btn,
+.pdf-optimized .photo-input {
+    display: none !important;
+}
+
+/* ============================================= */
+/* BLOQUES ESPECÍFICOS MEJORADOS */
+/* ============================================= */
+
+/* Datos Personales */
+.pdf-optimized .personal-data-grid {
+    display: grid !important;
+    grid-template-columns: 1.2in 1fr !important;
+    gap: 0.3in !important;
+    align-items: start !important;
+    margin-bottom: 0.2in !important;
+}
+
+.pdf-optimized .photo-area {
+    text-align: center !important;
+}
+
+.pdf-optimized .profile-photo {
+    width: 1.2in !important;
+    height: 1.2in !important;
+    border-radius: 50% !important;
+    object-fit: cover !important;
+    border: 2px solid #0A3B68 !important;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1) !important;
+}
+
+.pdf-optimized .photo-placeholder {
+    display: none !important;
+}
+
+.pdf-optimized .data-name {
+    font-size: 20pt !important;
+    font-weight: bold !important;
+    color: #1a1a1a !important;
+    margin-bottom: 0.05in !important;
+    line-height: 1.1 !important;
+}
+
+.pdf-optimized .data-position {
+    font-size: 12pt !important;
+    font-weight: bold !important;
+    color: #0A3B68 !important;
+    margin-bottom: 0.1in !important;
+    font-style: italic !important;
+}
+
+.pdf-optimized .contact-info {
+    font-size: 10pt !important;
+    color: #666 !important;
+    margin-bottom: 0.05in !important;
+}
+
+.pdf-optimized .data-address {
+    font-size: 10pt !important;
+    color: #666 !important;
+    font-style: italic !important;
+}
+
+/* Items de Educación, Experiencia, etc. */
+.pdf-optimized .item {
+    margin-bottom: 0.15in !important;
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+    padding: 0.1in 0 !important;
+    border-left: 3px solid #0A3B68 !important;
+    padding-left: 0.15in !important;
+    background: linear-gradient(to right, #f8fafc 0%, transparent 100%) !important;
+}
+
+.pdf-optimized .item-header {
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: flex-start !important;
+    margin-bottom: 0.05in !important;
+    page-break-after: avoid !important;
+}
+
+.pdf-optimized .item-title {
+    font-weight: bold !important;
+    font-size: 12pt !important;
+    color: #1a1a1a !important;
+    flex: 1 !important;
+}
+
+.pdf-optimized .item-date {
+    font-weight: bold !important;
+    color: #0A3B68 !important;
+    font-size: 10pt !important;
+    min-width: 1in !important;
+    text-align: right !important;
+    background: #0A3B68 !important;
+    color: white !important;
+    padding: 0.02in 0.08in !important;
+    border-radius: 12px !important;
+}
+
+.pdf-optimized .item-subtitle {
+    font-weight: bold !important;
+    font-style: italic !important;
+    font-size: 11pt !important;
+    color: #444 !important;
+    margin: 0.03in 0 !important;
+}
+
+.pdf-optimized .item-description {
+    font-size: 10.5pt !important;
+    color: #555 !important;
+    line-height: 1.3 !important;
+    text-align: justify !important;
+}
+
+/* Habilidades */
+.pdf-optimized .skill-item {
+    display: grid !important;
+    grid-template-columns: 1.5in 1fr 0.8in !important;
+    align-items: center !important;
+    gap: 0.15in !important;
+    margin-bottom: 0.08in !important;
+    padding: 0.05in 0 !important;
+}
+
+.pdf-optimized .progress-bar {
+    height: 6px !important;
+    background-color: #e5e7eb !important;
+    border-radius: 3px !important;
+    overflow: hidden !important;
+}
+
+.pdf-optimized .progress-fill {
+    height: 100% !important;
+    background: linear-gradient(90deg, #0A3B68 0%, #1e5a9c 100%) !important;
+    border-radius: 3px !important;
+}
+
+/* ============================================= */
+/* PIE DE PÁGINA MEJORADO */
+/* ============================================= */
+
+.pdf-membrete footer {
+    margin-top: 0.2in !important;
+    border-top: 1px solid #ddd !important;
+    padding: 0.15in 0.5in !important;
+    font-size: 9pt !important;
+    color: #666 !important;
+    background: #f8fafc !important;
+    text-align: center !important;
+}
+
+/* ============================================= */
+/* MEJORAS DE TIPOGRAFÍA Y ESPACIADO */
+/* ============================================= */
+
+.pdf-optimized h1, .pdf-optimized h2, .pdf-optimized h3 {
+    font-family: 'Times New Roman', serif !important;
+    color: #0A3B68 !important;
+}
+
+.pdf-optimized p {
+    text-align: justify !important;
+    margin-bottom: 0.1in !important;
+    orphans: 2 !important;
+    widows: 2 !important;
+}
+
+.pdf-optimized ul, .pdf-optimized ol {
+    margin: 0.1in 0 !important;
+    padding-left: 0.3in !important;
+}
+
+.pdf-optimized li {
+    margin-bottom: 0.05in !important;
+    page-break-inside: avoid !important;
+}
+
+/* ============================================= */
+/* CONTROL DE SALTO DE PÁGINAS */
+/* ============================================= */
+
+.page-break-before {
+    page-break-before: always !important;
+}
+
+.page-break-after {
+    page-break-after: always !important;
+}
+
+.avoid-break-inside {
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+}
+
+.keep-with-next {
+    page-break-after: avoid !important;
+}
+
+/* ============================================= */
+/* ESTILOS PARA SECCIONES ESPECIALES */
+/* ============================================= */
+
+/* Resumen Profesional */
+.pdf-optimized [data-block-type="summary"] .block-content {
+    font-style: italic !important;
+    text-align: justify !important;
+    background: #f8fafc !important;
+    padding: 0.15in !important;
+    border-left: 4px solid #0A3B68 !important;
+    border-radius: 0 4px 4px 0 !important;
+}
+
+/* Idiomas */
+.pdf-optimized [data-block-type="languages"] .item {
+    background: none !important;
+    border-left: none !important;
+    padding-left: 0 !important;
+}
+
+.pdf-optimized [data-block-type="languages"] .item-header {
+    border-bottom: 1px solid #e5e7eb !important;
+    padding-bottom: 0.05in !important;
+}
+
+/* Habilidades Técnicas */
+.pdf-optimized [data-block-type="skills"] .block-content {
+    display: grid !important;
+    grid-template-columns: repeat(auto-fit, minmax(2in, 1fr)) !important;
+    gap: 0.15in !important;
+}
+
+/* ============================================= */
+/* MARCADORES DE PÁGINA PARA EL ÍNDICE */
+/* ============================================= */
+
+.section-anchor {
+    position: relative !important;
+    top: -0.2in !important;
+    visibility: hidden !important;
+}
+
+/* ============================================= */
+/* ESTILOS PARA ELEMENTOS DE LISTA MEJORADOS */
+/* ============================================= */
+
+.pdf-optimized .item-list {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 0.1in !important;
+}
+
+.pdf-optimized .item-field {
+    margin: 0.02in 0 !important;
+    padding-left: 0.1in !important;
+    border-left: 2px solid #e5e7eb !important;
+}
+
+.pdf-optimized .item-subsection {
+    font-weight: bold !important;
+    font-style: italic !important;
+    color: #444 !important;
+    margin-top: 0.05in !important;
+}
+
+/* ============================================= */
+/* MEJORAS DE ACCESIBILIDAD Y LEGIBILIDAD */
+/* ============================================= */
+
+.pdf-optimized * {
+    text-rendering: optimizeLegibility !important;
+    -webkit-print-color-adjust: exact !important;
+    color-adjust: exact !important;
+}
+
+.pdf-optimized .highlight {
+    background-color: #fff3cd !important;
+    padding: 0.02in 0.05in !important;
+    border-radius: 2px !important;
+    font-weight: bold !important;
+}
+
+/* ============================================= */
+/* ESTILOS PARA NUMERACIÓN DE PÁGINAS */
+/* ============================================= */
+
+@page {
+    margin: 0.5in;
+    size: A4;
+    
+    @bottom-center {
+        content: "Página " counter(page);
+        font-size: 9pt;
+        color: #666;
+        font-family: 'Times New Roman', serif;
+    }
+    
+    @top-center {
+        content: "Currículum Vitae";
+        font-size: 10pt;
+        color: #0A3B68;
+        font-family: 'Times New Roman', serif;
+        font-weight: bold;
+    }
+}
+
+/* Para la página de índice */
+@page :first {
+    @bottom-center {
+        content: "";
+    }
+    
+    @top-center {
+        content: "";
+    }
+}
+
+/* ============================================= */
+/* ESTILOS RESPONSIVE PARA PDF */
+/* ============================================= */
+
+@media print {
+    .pdf-optimized {
+        font-size: 11pt !important;
+    }
+    
+    .pdf-optimized .cv-block {
+        margin-bottom: 0.2in !important;
+    }
+    
+    .pdf-optimized .personal-data-grid {
+        grid-template-columns: 1fr !important;
+        text-align: center !important;
+    }
+    
+    .pdf-optimized .profile-photo {
+        margin: 0 auto 0.1in auto !important;
+    }
+}
+
+/* ============================================= */
+/* ESTILOS DECORATIVOS ADICIONALES */
+/* ============================================= */
+
+.pdf-optimized .accent-border {
+    border-left: 4px solid #0A3B68 !important;
+    padding-left: 0.15in !important;
+    background: linear-gradient(to right, #f0f4f8 0%, transparent 100%) !important;
+}
+
+.pdf-optimized .signature-area {
+    margin-top: 0.3in !important;
+    padding-top: 0.2in !important;
+    border-top: 2px solid #0A3B68 !important;
+    text-align: right !important;
+    font-style: italic !important;
+    color: #666 !important;
+}
+
+/* ============================================= */
+/* ESTILOS PARA ELEMENTOS VACÍOS */
+/* ============================================= */
+
+.pdf-optimized [contenteditable="true"]:empty {
+    display: none !important;
+}
+
+.pdf-optimized .empty-section {
+    color: #999 !important;
+    font-style: italic !important;
+    text-align: center !important;
+    padding: 0.2in !important;
+    border: 1px dashed #ccc !important;
+    border-radius: 4px !important;
+    background: #fafafa !important;
+}
+<!-- Hernández Guadarrama Hellen Aylén - Plantillas PDF -->
+<!-- Roberto Bonifacio Castelan Sanagustín - Formato Académico -->
+<!-- Ramírez García Maria Guadalupe - Estilos de Impresión -->
